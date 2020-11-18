@@ -5,9 +5,9 @@ export default class DinoName {
       const url = `http://dinoipsum.herokuapp.com/api/?format=json&paragraphs=1&words=2`;
       request.onload = function() {
         if (this.status === 200) {
-          resolve(request.response); //change to response1
+          resolve(request.response); 
         } else {
-          reject(request.response); //change to response1
+          reject(request.response); 
         }
       };
       request.open("GET", url, true);

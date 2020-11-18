@@ -20,7 +20,7 @@ $(document).ready(function()  {
     let promise2 = BabySinclair.getGif();
     Promise.all([promise1, promise2]).then((response) => {
       const body = JSON.parse(promise1.response); //how do we differentiate between which response to parse for each promise
-      const gif = JSON.parse(promise2.response);
+      const gif = JSON.parse(promise2.response); //this code does not work
       $('#output').text(`How does the name ${body[0][0]} ${body[0][1]} ${lastname} sound for your baby dinosour?`);
       $('#showGif1').html(`<img src=${gif.data[0].images.original.url}>`);
     }, function(error) {
@@ -28,6 +28,8 @@ $(document).ready(function()  {
     });
   });
 });
+
+
 
 // Successful API call for Dino ipsums
 
