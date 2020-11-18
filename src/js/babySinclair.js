@@ -1,13 +1,13 @@
-export default class DinoName {
-  static getDinoName() {
+export default class BabySinclair {
+  static getGif() {
     return new Promise(function(resolve, reject) {
       let request = new XMLHttpRequest();
-      const url = `http://dinoipsum.herokuapp.com/api/?format=json&paragraphs=1&words=2`;
+      const url = `https://api.giphy.com/v1/gifs/search?api_key=${process.env.API_KEY}&q=babysinclair&limit=1&offset=0&rating=g&lang=en`;
       request.onload = function() {
         if (this.status === 200) {
-          resolve(request.response); //change to response1
+          resolve(request.response);
         } else {
-          reject(request.response); //change to response1
+          reject(request.response);
         }
       };
       request.open("GET", url, true);
