@@ -10,8 +10,8 @@ export default class BabySinclair {
           reject(request.response);
         }
       };
-      request2.open("GET", url, true);
-      request2.send();
+      request.open("GET", url, true);
+      request.send();
     });
   }
 }

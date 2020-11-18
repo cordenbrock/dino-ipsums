@@ -5,29 +5,47 @@ import './css/styles.css';
 import DinoName from './js/dinoName.js';
 import BabySinclair from './js/babySinclair.js';
 
-//function clearFields()  {
-  //$('#surname').val("");
-  //$('#output').text("");
-  //$('#showerror').text("");
-//}
+
+
 
 $(document).ready(function()  {
   $('#form').submit(function(event)  {
     event.preventDefault();
-    // clearFields();
     let lastname = $('#surname').val();
     let promise1 = DinoName.getDinoName();
     let promise2 = BabySinclair.getGif();
-    Promise.all([promise1, promise2]).then((response) => {
-      const body = JSON.parse(promise1.response); //how do we differentiate between which response to parse for each promise
-      const gif = JSON.parse(promise2.response); //this code does not work
+    Promise.all([promise1, promise2]).then((responseArray) => {
+      const body = JSON.parse(responseArray[0]);
+      const gif = JSON.parse(responseArray[1]);
+      console.log(body, gif);
       $('#output').text(`How does the name ${body[0][0]} ${body[0][1]} ${lastname} sound for your baby dinosour?`);
-      $('#showGif1').html(`<img src=${gif.data[0].images.original.url}>`);
+      $('#show-gif').html(`<img src=${gif.data[0].images.original.url}>`);
     }, function(error) {
       $('#show-errors').text(`There was an error processing your request: ${error}`);    
     });
   });
 });
+
+
+
+
+// $(document).ready(function()  {
+//   $('#form').submit(function(event)  {
+//     event.preventDefault();
+//     // clearFields();
+//     let lastname = $('#surname').val();
+//     let promise1 = DinoName.getDinoName();
+//     let promise2 = BabySinclair.getGif();
+//     Promise.all([promise1, promise2]).then((response) => {
+//       const body = JSON.parse(promise1.response); //how do we differentiate between which response to parse for each promise
+//       const gif = JSON.parse(promise2.response); //this code does not work
+//       $('#output').text(`How does the name ${body[0][0]} ${body[0][1]} ${lastname} sound for your baby dinosour?`);
+//       $('#showGif1').html(`<img src=${gif.data[0].images.original.url}>`);
+//     }, function(error) {
+//       $('#show-errors').text(`There was an error processing your request: ${error}`);    
+//     });
+//   });
+// });
 
 
 
